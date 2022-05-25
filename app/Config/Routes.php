@@ -34,6 +34,7 @@ $routes->setAutoRoute(true);
 
 $routes->post('/login', 'User::Login');
 $routes->post('/verifytoken', 'User::Verifytoken');
+$routes->post('/niuniumessage', 'Message::GetMessage');
 
 /*
  * --------------------------------------------------------------------

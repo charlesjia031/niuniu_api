@@ -53,7 +53,7 @@ class User extends BaseController
         $request = \Config\Services::request();
         $loginToken = $request->getPostGet('loginToken');
         if (!$loginToken) {
-            echoJson(400, 'Bad Request', [], ['loginToken' => 'The login token field is required.'], '#2001');
+            echoJson(400, 'Bad Request', [], ['loginToken' => 'The login token field is required.'], '#1007');
             exit(0);
         }
 
@@ -64,7 +64,7 @@ class User extends BaseController
         $uid = intval($uid);
 
         if (!$uid) {
-            echoJson(401, 'Invalid Token', [], [], '#2002');
+            echoJson(401, 'Invalid Token', [], [], '#1008');
             exit(0);
         }
 
@@ -73,14 +73,14 @@ class User extends BaseController
         $user = $userModel->select(['username', 'nickname', 'status'])->where(['id' => $uid])->first();
         if ($user) {
             if ($user['status'] != 1) {
-                echoJson(401, 'This user has been banned', [], [], '#2003');
+                echoJson(401, 'This user has been banned', [], [], '#1009');
                 exit(0);
             }
 
-            echoJson(200, 'ok', ['userId' => $uid, 'username' => $user['username'], 'userNickname' => $user['nickname']], [], '#2004');
+            echoJson(200, 'ok', ['userId' => $uid, 'username' => $user['username'], 'userNickname' => $user['nickname']], [], '#1010');
         }
         else {
-            echoJson(401, 'Invalid Token', [], [], '#2005');
+            echoJson(401, 'Invalid Token', [], [], '#1011');
         }
     }
 }
