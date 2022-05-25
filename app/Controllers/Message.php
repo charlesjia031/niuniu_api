@@ -32,6 +32,8 @@ class Message extends BaseController
             exit(0);
         }
 
+        $page_size = 50;
+
         $db = db_connect('reader');
         $userModel = model('UserModel', true, $db);
         $user = $userModel->select(['username', 'nickname', 'status'])->where(['id' => $uid])->first();
