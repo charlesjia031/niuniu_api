@@ -4,22 +4,22 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UserModel extends Model
+class MessageModel extends Model
 {
-    protected $table      = 'player_users';
+    protected $table      = 'niuniu_messages';
     protected $primaryKey = 'id';
 
     protected $useAutoIncrement = true;
 
     protected $returnType     = 'array';
 
-    protected $allowedFields = ['password', 'email'];
+    protected $allowedFields = [];
 
     protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $createdField  = '';
+    protected $updatedField  = '';
 
     protected $validationRules    = [];
     protected $validationMessages = [];
-    protected $skipValidation     = false;
+    protected $skipValidation     = true;
 }
