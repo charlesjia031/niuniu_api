@@ -43,9 +43,11 @@ class Message extends BaseController
                 exit(0);
             }
         }
+        unset($userModel);
 
-        $messageModel = model('UserModel', true, $db);
+        $messageModel = model('MessageModel', true, $db);
         $message = $messageModel->select(['id','messageType','content','senderId','username','userNickname','senderImageThumb','createdAt'])->where(['id >' => $lastId])->orderBy('id', 'DESC')->findAll($page_size, 0);
+        unset($messageModel);
         echoJson(200, 'ok', $message, [], '#2005');
     }
 }
