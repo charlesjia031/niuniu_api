@@ -50,6 +50,21 @@ class Message extends BaseController
         unset($messageModel);
         echoJson(200, 'ok', $message, [], '#2005');
     }
+
+    public function GetSticker() {
+        $request = \Config\Services::request();
+        $lastUpdatedAt = $request->getPostGet('lastUpdatedAt', FILTER_SANITIZE_ADD_SLASHES);
+        $lastUpdatedAt = intval($lastUpdatedAt);
+        if (!$lastUpdatedAt) {
+            echoJson(400, 'Bad Request', [], ['lastId' => 'The lastUpdatedAt field is integer only.'], '#2006');
+            exit(0);
+        }
+
+        $stickersModel = model('StickersModel', true, $db);
+        $sticker = $stickersModel->select(['id','name','sequenceNum','category','isRemote'])->where(['updatedAt >=' => $lastUpdatedAt])->orderBy('id', 'DESC');
+        unset($stickersModel);
+        echoJson(200, 'ok', $sticker, [], '#2007');
+    }
 }
 
 
