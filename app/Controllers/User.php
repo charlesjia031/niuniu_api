@@ -46,7 +46,13 @@ class User extends BaseController
         $encrypted_uid = $encrypter->encrypt($user['id']);
         $loginToken = base64_encode($encrypted_uid);
 
-        // $this->redis->set('logintoken_'.$loginToken, $user['id']);
+
+        $redis = new Redis();
+        $redis->connect(getenv('redis.host'), getenv('redis.port'));
+        $redis->auth(['pass' => getenv('redis.password')]);
+        $redis->select(0);
+        $redis->set('logintoken_'.$loginToken, $user['id']);
+        unset($redis);
 
         echoJson(200, 'ok', ['loginToken' => $loginToken, 'userId' => $user['id'], 'username' => $username, 'userNickname' => $user['nickname']], [], '#1006');
     }
