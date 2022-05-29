@@ -68,7 +68,12 @@ class User extends BaseController
 
         $encrypter = \Config\Services::encrypter();
         $encrypted_uid = base64_decode($loginToken);
-        $uid = $encrypter->decrypt($encrypted_uid);
+        try {
+            $uid = $encrypter->decrypt($encrypted_uid);
+        }
+        catch (EncryptionException $e) {
+            $uid = 0;
+        }
 
         $uid = intval($uid);
 
