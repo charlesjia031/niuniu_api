@@ -62,7 +62,7 @@ class Message extends BaseController
         }
 
         $db = db_connect('reader');
-        // $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $db->options(MYSQLI_OPT_INT_AND_FLOAT_NATIVE, 1);
         // $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
         
         $stickersModel = model('StickersModel', true, $db);
