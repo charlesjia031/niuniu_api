@@ -22,6 +22,4 @@ class MessageModel extends Model
     protected $validationRules    = [];
     protected $validationMessages = [];
     protected $skipValidation     = true;
-
-    protected $returnType    = \App\Entities\Message::class;
 }
