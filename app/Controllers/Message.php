@@ -64,6 +64,7 @@ class Message extends BaseController
         $db = db_connect('reader');
         $stickersModel = model('StickersModel', true, $db);
         $sticker = $stickersModel->select(['id','name','sequenceNum','category','isRemote'])->where(['updatedAt >=' => $lastUpdatedAt])->orderBy('id', 'DESC')->findAll();
+        var_dump($sticker);
         unset($stickersModel);
         echoJson(200, 'ok', $sticker, [], '#2007');
     }
