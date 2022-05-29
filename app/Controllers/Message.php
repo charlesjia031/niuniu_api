@@ -60,6 +60,7 @@ class Message extends BaseController
             exit(0);
         }
 
+        $db = db_connect('reader');
         $stickersModel = model('StickersModel', true, $db);
         $sticker = $stickersModel->select(['id','name','sequenceNum','category','isRemote'])->where(['updatedAt >=' => $lastUpdatedAt])->orderBy('id', 'DESC');
         unset($stickersModel);
