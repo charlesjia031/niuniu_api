@@ -46,6 +46,8 @@ class User extends BaseController
         $encrypted_uid = $encrypter->encrypt($user['id']);
         $loginToken = base64_encode($encrypted_uid);
 
+        $this->redis->set('logintoken_'.$loginToken, $user['id']);
+
         echoJson(200, 'ok', ['loginToken' => $loginToken, 'userId' => $user['id'], 'username' => $username, 'userNickname' => $user['nickname']], [], '#1006');
     }
 
