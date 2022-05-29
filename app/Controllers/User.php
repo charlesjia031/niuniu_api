@@ -71,7 +71,7 @@ class User extends BaseController
         try {
             $uid = $encrypter->decrypt($encrypted_uid);
         }
-        catch (EncryptionException $e) {
+        catch (\EncryptionException $e) {
             $uid = 0;
         }
 
