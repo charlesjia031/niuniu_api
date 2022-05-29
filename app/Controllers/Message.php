@@ -53,7 +53,7 @@ class Message extends BaseController
 
     public function GetSticker() {
         $request = \Config\Services::request();
-        $lastUpdatedAt = $request->getPostGet('lastUpdatedAt', FILTER_SANITIZE_ADD_SLASHES);
+        $lastUpdatedAt = $request->getPostGet('lastUpdatedAt');
         $lastUpdatedAt = intval($lastUpdatedAt);
         if (!$lastUpdatedAt) {
             echoJson(400, 'Bad Request', [], ['lastId' => 'The lastUpdatedAt field is integer only.'], '#2006');
