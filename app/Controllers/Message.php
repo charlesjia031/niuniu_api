@@ -62,8 +62,8 @@ class Message extends BaseController
         }
 
         $db = db_connect('reader');
-        $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
+        // $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        // $db->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
         
         $stickersModel = model('StickersModel', true, $db);
         $sticker = $stickersModel->select(['id','name','sequenceNum','category','isRemote'])->where(['updatedAt >=' => $lastUpdatedAt])->orderBy('id', 'DESC')->findAll();
