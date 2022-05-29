@@ -47,7 +47,7 @@ class User extends BaseController
         $loginToken = base64_encode($encrypted_uid);
 
 
-        $redis = new Redis();
+        $redis = new \Redis();
         $redis->connect(getenv('redis.host'), getenv('redis.port'));
         $redis->auth(['pass' => getenv('redis.password')]);
         $redis->select(0);
