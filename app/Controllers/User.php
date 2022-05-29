@@ -51,7 +51,8 @@ class User extends BaseController
         $redis->connect(getenv('redis.host'), getenv('redis.port'));
         $redis->auth(['pass' => getenv('redis.password')]);
         $redis->select(0);
-        $redis->set('logintoken_'.$loginToken, $user['id']);
+        $redis->set('loginUserID='.$user['id'].'_token='.$loginToken, ' ');
+
         unset($redis);
 
         echoJson(200, 'ok', ['loginToken' => $loginToken, 'userId' => $user['id'], 'username' => $username, 'userNickname' => $user['nickname']], [], '#1006');
